@@ -31,6 +31,9 @@ namespace UnityAdvance
         [SerializeField]
         private MeshRenderer meshRenderer;
 
+        [SerializeField]
+        private Vector2[] _arrUV;
+
         // This function is called when the script is loaded or a value is changed in the inspector (Called in the editor only)
         private void OnValidate()
         {
@@ -59,6 +62,13 @@ namespace UnityAdvance
             myMesh = new Mesh();
             myMesh.name = "MyMesh";
 
+            // bottom
+            // top
+            // front
+            // back
+            // left
+            // right
+
             myMesh.SetVertices(_listVertices);
 
             // also this can be used
@@ -69,6 +79,8 @@ namespace UnityAdvance
             //};
 
             myMesh.SetIndices(_arrIndices, _meshTopology, 0);
+
+            myMesh.uv = _arrUV;
 
             //myMesh.RecalculateNormals();
         }
