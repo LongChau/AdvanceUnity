@@ -37,10 +37,10 @@ namespace UnityAdvance
         // This function is called when the script is loaded or a value is changed in the inspector (Called in the editor only)
         private void OnValidate()
         {
-            meshFilter = GetComponent<MeshFilter>();
-            meshRenderer = GetComponent<MeshRenderer>();
+            //meshFilter = GetComponent<MeshFilter>();
+            //meshRenderer = GetComponent<MeshRenderer>();
 
-            BuildAndShowCube();
+            //BuildAndShowCube();
         }
 
         // Start is called before the first frame update
