@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 namespace UnityAdvance
@@ -33,6 +35,7 @@ namespace UnityAdvance
         {
             listChildMeshFilters.Clear();
             listChildMeshRenderers.Clear();
+            listLocalPos.Clear();
 
             for (int i = 0; i < model.transform.childCount; i++)
             {
@@ -68,7 +71,7 @@ namespace UnityAdvance
 
             for (int i = 0; i < listChildMeshFilters.Count; i++)
             {
-                var mesh = listChildMeshFilters[i].mesh;
+                var mesh = listChildMeshFilters[i].sharedMesh;
 
                 foreach (var vertice in mesh.vertices)
                 {
@@ -100,6 +103,39 @@ namespace UnityAdvance
             //myMesh.RecalculateNormals();
 
             myMeshFilter.mesh = myMesh;
+        }
+
+        private void CreateCombinedMaterial()
+        {
+            int width = 512 * listChildMeshFilters.Count;
+
+            var sourceRender = model.GetComponentInChildren<MeshRenderer>();
+            myMeshRenderer.sharedMaterial = sourceRender?.sharedMaterial;
+
+            var sourceTex = sourceRender.sharedMaterial.mainTexture as Texture2D;
+            Color[] sourcePixels = sourceTex.GetPixels();
+
+            Material newMat = Instantiate(sourceRender?.sharedMaterial);
+            Texture2D newTex = Instantiate(newMat.mainTexture) as Texture2D;
+
+            Color[] pixels = newTex.GetPixels();
+
+            for (int i = 0; i < listChildMeshFilters.Count; i++)
+            {
+                for (int y = 0; y < 512; y++)
+                {
+                    for (int x = 0; x < 512; x++)
+                    {
+                        int newCol = x + (i * 512);
+                        pixels[y * width + newCol] = sourcePixels[x * i];
+                    }
+                }
+            }
+
+            var texContent = newTex.EncodeToPNG();
+            File.WriteAllBytes(Application.dataPath + "/Combined.png", texContent);
+
+            AssetDatabase.Refresh();
         }
     }
 }
