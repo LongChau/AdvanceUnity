@@ -45,6 +45,17 @@ namespace UnityAdvance
         [SerializeField]
         private Compass _compass;
 
+        private Vector3 _localPositionToCompass;
+        public Vector3 FakeTarget
+        {
+            get
+            {
+                var deltaX = _localPositionToCompass.x;
+                var fakeTargetLocalPosition = new Vector3(deltaX, 0, 0);
+                return _compass.transform.TransformPoint(fakeTargetLocalPosition);
+            }
+        }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -124,9 +135,9 @@ namespace UnityAdvance
 
         private bool IsNearCheckPoint()
         {
-            var newPos = _compass.transform.InverseTransformPoint(transform.position);
-            Debug.Log($"newPos: {newPos}");
-            return newPos.z >= 0;
+            _localPositionToCompass = _compass.transform.InverseTransformPoint(transform.position);
+            Debug.Log($"_localPositionToCompass: {_localPositionToCompass}");
+            return _localPositionToCompass.z >= 0;
         }
 
         private bool IsNearPoint(Vector3 point)
@@ -207,6 +218,11 @@ namespace UnityAdvance
         {
             transform.position = Vector3.SmoothDamp(transform.position, _endPoint, 
                 ref _velocity, 10);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawSphere(FakeTarget, 0.35f);
         }
     }
 }
