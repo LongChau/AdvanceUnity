@@ -42,6 +42,9 @@ namespace UnityAdvance
 
         private Action OnLastPointReached;
 
+        [SerializeField]
+        private Compass _compass;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -55,11 +58,19 @@ namespace UnityAdvance
             _startPoint = _movementPath[curPointIndex];
             _endPoint = _movementPath[curPointIndex + 1];
             _isLastPointReached = false;
+
+            RepositionCompass();
         }
 
         private void Reset()
         {
             Init();
+        }
+
+        private void RepositionCompass()
+        {
+            _compass.transform.position = _endPoint;
+            _compass.transform.forward = _endPoint - _startPoint;
         }
 
         // Update is called once per frame
@@ -70,7 +81,7 @@ namespace UnityAdvance
 
             CheckLastPoint();
 
-            //CheckFace();
+            LookAtNextPoint();
             SetOneway();
             CheckMovementMethod();
         }
@@ -105,9 +116,17 @@ namespace UnityAdvance
             }
         }
 
-        private void CheckFace()
+        private void LookAtNextPoint()
         {
-            transform.LookAt(_endPoint);
+            //transform.LookAt(_endPoint);
+            transform.rotation = _compass.transform.rotation;
+        }
+
+        private bool IsNearCheckPoint()
+        {
+            var newPos = _compass.transform.InverseTransformPoint(transform.position);
+            Debug.Log($"newPos: {newPos}");
+            return newPos.z >= 0;
         }
 
         private bool IsNearPoint(Vector3 point)
@@ -120,10 +139,12 @@ namespace UnityAdvance
 
         private void SetOneway()
         {
-            if (IsNearPoint(_endPoint))
+            //if (IsNearPoint(_endPoint))
+            if (IsNearCheckPoint())
             {
                 if (curPointIndex < _movementPath.PointCount - 1)
                 {
+                    Debug.Log("Nextpoint!!! Go go!!!");
                     curPointIndex++;
 
                     var newEnd = _movementPath[curPointIndex];
@@ -132,6 +153,8 @@ namespace UnityAdvance
                         _startPoint = _endPoint;
                         _endPoint = newEnd;
                     }
+
+                    RepositionCompass();
                 }
             }
         }
@@ -168,8 +191,10 @@ namespace UnityAdvance
 
         private void MoveWith_MoveTowards()
         {
-            transform.position = Vector3.MoveTowards(transform.position,
-                _endPoint, _movementSpeed * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(transform.position,
+            //    _endPoint, _movementSpeed * Time.deltaTime);
+
+            transform.Translate(transform.forward * Time.deltaTime, Space.World);
         }
 
         private void MoveWith_Lerp()
