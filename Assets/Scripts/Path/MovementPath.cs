@@ -22,6 +22,7 @@ namespace UnityAdvance
         public Vector3 LastPoint => _pointPosition(PointCount - 1);
 
         public List<WaypointPath> ListPathPoints { get => _listPathPoints; set => _listPathPoints = value; }
+        public float Wide { get => wide; set => wide = value; }
 
         // Start is called before the first frame update
         void Start()

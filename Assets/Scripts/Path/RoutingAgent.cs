@@ -94,7 +94,22 @@ namespace UnityAdvance
 
             LookAtNextPoint();
             SetOneway();
+            EnsurePositionOnTheWay();
             CheckMovementMethod();
+        }
+
+        private void EnsurePositionOnTheWay()
+        {
+            if (_localPositionToCompass.x < -_movementPath.Wide)
+            {
+                _localPositionToCompass.x = -_movementPath.Wide;
+            }
+            else if (_localPositionToCompass.x >= _movementPath.Wide)
+            {
+                _localPositionToCompass.x = _movementPath.Wide;
+            }
+
+            transform.position = _compass.transform.TransformPoint(_localPositionToCompass);
         }
 
         private bool CheckLastPoint()
@@ -136,7 +151,7 @@ namespace UnityAdvance
         private bool IsNearCheckPoint()
         {
             _localPositionToCompass = _compass.transform.InverseTransformPoint(transform.position);
-            Debug.Log($"_localPositionToCompass: {_localPositionToCompass}");
+            //Debug.Log($"_localPositionToCompass: {_localPositionToCompass}");
             return _localPositionToCompass.z >= 0;
         }
 
