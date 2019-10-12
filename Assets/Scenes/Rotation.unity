@@ -410,8 +410,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01b9315b94a66a41bcf89dbb5bdfc1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _movementSpeed: 5
+  _rotateSpeed: 30
   _heliModel: {fileID: 1268659516}
+  _flatForward: {x: 0, y: 0, z: 1}
+  _rotateAngle: 0
+  _maxLookDownAngle: 15
+  _lookDownForward: {x: 1, y: 0, z: 0}
 --- !u!1 &1899519413
 GameObject:
   m_ObjectHideFlags: 0
