@@ -158,7 +158,7 @@ namespace UnityAdvance
             //transform.forward = FlatForward;
             //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
-            var angle = Quaternion.Euler(0f, transform.eulerAngles.y, transform.eulerAngles.z);
+            var angle = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
             transform.rotation = Quaternion.Lerp(transform.rotation,
                 angle,
                 2f * Time.fixedDeltaTime);
