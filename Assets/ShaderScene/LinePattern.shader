@@ -1,16 +1,15 @@
-﻿Shader "Custom/BareBone"
+﻿Shader "Custom/LinePattern"
 {
+    // chiếu đến đâu vẽ đến đó
     Properties
     {
-        _IDNumber("Id number", Int) = 1
-        _ScaleNumber("Scale", Float) = 1.0
-        _MyVector4("Direction", Vector) = (0.0, 0.0, 0.0, 0.0)
         _MyColor("Tint Color", Color) = (1.0, 1.0, 1.0, 1.0)
         _Speed("Speed", Range(0, 1)) = 0.0
         _MainTex("Main Texture", 2D) = "white" {}
-        // _BlendAlpha("_BlendAlpha", UnityEngine.Rendering.BlendMode) = OneMinusSrcAlpha
-
         _SinValue("Sin Value", Int) = 1
+
+        _Start("Start", float) = 1.0
+        _Width("Width", float) = 1.0
     }
     SubShader
     {
@@ -34,6 +33,8 @@
             uniform float4 _MainTex_ST;
 
             uniform int _SinValue;
+            uniform float _Start;
+            uniform float _Width;
 
             struct VertexInput
             {
@@ -56,17 +57,20 @@
                 return vertexOutput;
             }
 
+            half DrawLineAlpha(float2 uv, float start, float end)
+            {
+                if ((uv.x > start && uv.x < end) && (uv.y > start && uv.y < end))
+                // if ((uv.x > start && uv.x < end) || (uv.y > start && uv.y < end))
+                    return 1;
+                return 0;
+            }
+
             half4 fragFunc(VertexOutput interpolatedVertex) : COLOR
             {
-                // half4 outputColor = _MyColor;
-                // outputColor.r = interpolatedVertex.pos.z;
-
                 // // sample texture and return it
                 fixed4 col = tex2D(_MainTex, interpolatedVertex.uv);
-                // col.a = interpolatedVertex.uv.x * _MyColor.a;
 
-                // col.a = sqrt(interpolatedVertex.texcoord * _MyColor.a);
-                col.a = clamp(sin(interpolatedVertex.uv.x * _SinValue), 0, 1);
+                col.a = DrawLineAlpha(interpolatedVertex.uv, _Start, _Start + _Width);
 
                 return col;
             }

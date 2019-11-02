@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MyMaterial
-  m_Shader: {fileID: 4800000, guid: 545c26d5f84c34a46be66d1f24eb8ace, type: 3}
+  m_Name: BlinkingCircle
+  m_Shader: {fileID: 4800000, guid: bbc20301caefdab498d9cb99a22de096, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -56,7 +56,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BlinkSpeed: 1
     - _BumpScale: 1
+    - _Center: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -68,15 +70,20 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Radius: 1
     - _ScaleNumber: 1
     - _SinValue: 20
+    - _SmoothFeather: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0
     - _SrcBlend: 1
+    - _Start: 0.5
     - _UVSec: 0
+    - _Width: 1
     - _ZWrite: 1
     m_Colors:
+    - _Center: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MyColor: {r: 1, g: 1, b: 1, a: 1}

@@ -1,16 +1,22 @@
-﻿Shader "Custom/BareBone"
+﻿Shader "Custom/LinePattern"
 {
+    // chiếu đến đâu vẽ đến đó
+    // với hình tròn
+    // và có smoothFeather
+    // Feather -> trong photoshop
     Properties
     {
-        _IDNumber("Id number", Int) = 1
-        _ScaleNumber("Scale", Float) = 1.0
-        _MyVector4("Direction", Vector) = (0.0, 0.0, 0.0, 0.0)
         _MyColor("Tint Color", Color) = (1.0, 1.0, 1.0, 1.0)
         _Speed("Speed", Range(0, 1)) = 0.0
         _MainTex("Main Texture", 2D) = "white" {}
-        // _BlendAlpha("_BlendAlpha", UnityEngine.Rendering.BlendMode) = OneMinusSrcAlpha
-
         _SinValue("Sin Value", Int) = 1
+
+        _Center("Center", vector) = (0.5, 0.5, 0, 0)
+        _Radius("Radius", float) = 1.0
+
+        _SmoothFeather("Feather", Range(0.001, 0.05)) = 0.02
+
+        _BlinkSpeed("BlinkSpeed", float) = 0.0
     }
     SubShader
     {
@@ -34,6 +40,12 @@
             uniform float4 _MainTex_ST;
 
             uniform int _SinValue;
+            uniform float2 _Center;
+            uniform float _Radius;
+
+            uniform float _SmoothFeather;
+
+            uniform float _BlinkSpeed;
 
             struct VertexInput
             {
@@ -56,17 +68,28 @@
                 return vertexOutput;
             }
 
+            half DrawBlinkCircleAlphaFade(float2 uv, float2 center, float radius, float _feather)
+            {
+                //float distanceSq = pow(uv.x - center.x, );
+                float squareDistance = pow(uv.x - center.x, 2) + pow(uv.y - center.y, 2);
+                float squareRadius = pow(radius, 2);
+                float fadeValue = abs(sin(_Time.y * _BlinkSpeed));
+
+                // Fade từ hình tròn ra hình vuông
+                // return smoothstep(squareRadius, squareRadius - _feather, squareDistance * fadeValue);
+
+                // fade in fade out dần dần
+                return smoothstep(squareRadius, squareRadius - _feather, squareDistance) * fadeValue;
+            }
+
             half4 fragFunc(VertexOutput interpolatedVertex) : COLOR
             {
-                // half4 outputColor = _MyColor;
-                // outputColor.r = interpolatedVertex.pos.z;
-
                 // // sample texture and return it
                 fixed4 col = tex2D(_MainTex, interpolatedVertex.uv);
-                // col.a = interpolatedVertex.uv.x * _MyColor.a;
 
-                // col.a = sqrt(interpolatedVertex.texcoord * _MyColor.a);
-                col.a = clamp(sin(interpolatedVertex.uv.x * _SinValue), 0, 1);
+                // col.a = DrawCircleAlpha(interpolatedVertex.uv, _Center, _Radius);
+
+                col.a = DrawBlinkCircleAlphaFade(interpolatedVertex.uv, _Center, _Radius, _SmoothFeather);
 
                 return col;
             }
