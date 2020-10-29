@@ -325,6 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1415e4c3cc7e174418770b42d27a0037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filePath: Save\TestFile.txt
+  thread1_Text: Hello I'm thread 1
 --- !u!4 &1894397325
 Transform:
   m_ObjectHideFlags: 0
