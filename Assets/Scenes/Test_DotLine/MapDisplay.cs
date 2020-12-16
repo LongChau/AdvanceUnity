@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TestGPS.Manager;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -70,10 +72,27 @@ namespace TestGPS.Component
             mapImage.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+        //[ContextMenu("Test")]
+        //private void Test()
+        //{
+        //    A a = new A();
+        //    string json = JsonUtility.ToJson(a);
+        //    Debug.Log(json);
+        //}
 
-        }
+        //[Serializable]
+        //public class A
+        //{
+        //    public List<string> listStr = new List<string>
+        //    {
+        //        "ABC", "LONG", "TERRY"
+        //    };
+        //    public Dictionary<string, string> dict = new Dictionary<string, string>
+        //    {
+        //        { "name",   "ABC" },
+        //        { "age",    "9" },
+        //        { "class",  "Knight" },
+        //    };
+        //}
     }
 }
