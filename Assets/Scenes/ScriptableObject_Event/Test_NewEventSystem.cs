@@ -27,6 +27,7 @@ namespace NewEventSystem
 
         private void Handle_Event_HealthChanged(int health)
         {
+            Debug.Break();
             Debug.Log($"Test_NewEventSystem.Handle_Event_HealthChanged({health})");
         }
 
