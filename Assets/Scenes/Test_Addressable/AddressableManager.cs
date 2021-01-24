@@ -8,10 +8,12 @@ public class AddressableManager : MonoBehaviour
 {
     public string assetAddress = "AssetAddress";
     public GameObject myGameObject;
+    public AssetReference assetRef;
 
     // Start is called before the first frame update
     void Start()
     {
+        var newAsset = assetRef.InstantiateAsync(Vector3.zero, Quaternion.identity);
     }
 
     [ContextMenu("LoadAssetAsync")]

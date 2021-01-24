@@ -6,6 +6,7 @@ using UnityEditor;
 
 namespace UnityAdvance
 {
+#if UNITY_EDITOR
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class CubeBuilder : MonoBehaviour
     {
@@ -120,4 +121,5 @@ namespace UnityAdvance
             //
         }
     }
+#endif
 }

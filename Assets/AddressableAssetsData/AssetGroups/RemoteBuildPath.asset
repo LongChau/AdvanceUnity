@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: RemoteBuildPath
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: RemoteBuildPath
   m_Data:
     m_SerializedData: []
-  m_GUID: 38a8c4fa1d59b124591a39250b8bcd16
+  m_GUID: 7b323ab58c79c2d4aa882229ff8c2e4e
   m_SerializeEntries:
-  - m_GUID: 018d38aa8e959dd4aac112819878672c
-    m_Address: Assets/Scenes/Test_Addressable/Resources_moved/w_004.prefab
+  - m_GUID: 2ba015dacf3a2b64dab36dbda6052566
+    m_Address: w_017
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_MainAsset: {fileID: 7450469277197467244, guid: 018d38aa8e959dd4aac112819878672c,
+    m_MainAsset: {fileID: 4341970379946172242, guid: 2ba015dacf3a2b64dab36dbda6052566,
       type: 3}
-    m_TargetAsset: {fileID: 7450469277197467244, guid: 018d38aa8e959dd4aac112819878672c,
+    m_TargetAsset: {fileID: 4341970379946172242, guid: 2ba015dacf3a2b64dab36dbda6052566,
       type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 20b833e0c057ce04dab563ed00f53af9, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 070d8593089556d42b1513fb38442a4e, type: 2}
-    - {fileID: 11400000, guid: 7e3be9951bf67ae45bd660cde3191686, type: 2}
+    - {fileID: 11400000, guid: e1eacfd559d8f854d805baaf567f82bc, type: 2}
+    - {fileID: 11400000, guid: 4a2db4b62419745409036bfdab972bc7, type: 2}

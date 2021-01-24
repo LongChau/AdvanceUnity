@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace UnityAdvance
 {
+#if UNITY_EDITOR
     public class MergeMeshTutorial : MonoBehaviour
     {
         public GameObject model;
@@ -226,4 +227,5 @@ namespace UnityAdvance
             }
         }
     }
+#endif
 }
