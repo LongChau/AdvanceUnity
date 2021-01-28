@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SubScene/SubScene.unity
     guid: 98fa71e6f05057745a71b3fb753e12b0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SubScene/SubScene/EnviromentScene.unity
     guid: 6cadabf500e11184093e310ad06631ea
+  - enabled: 1
+    path: Assets/Scenes/Test_Addressable/Addressable.unity
+    guid: e1ef22c11b52bd943bd16d3220fbd481
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 5e6e7052fda95f0478ccede2bee2d613,
       type: 2}

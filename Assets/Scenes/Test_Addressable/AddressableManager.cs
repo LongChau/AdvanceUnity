@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -11,9 +12,10 @@ public class AddressableManager : MonoBehaviour
     public AssetReference assetRef;
 
     // Start is called before the first frame update
-    void Start()
+    private async Task Start()
     {
-        var newAsset = assetRef.InstantiateAsync(Vector3.zero, Quaternion.identity);
+        await assetRef.InstantiateAsync(Vector3.zero, Quaternion.identity).Task;
+        //LoadAssetAsync();
     }
 
     [ContextMenu("LoadAssetAsync")]
