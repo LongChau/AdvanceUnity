@@ -12,10 +12,15 @@ public class AddressableManager : MonoBehaviour
     public AssetReference assetRef;
 
     // Start is called before the first frame update
-    private async Task Start()
+    private async void Start()
+    {
+        await InstantiateAssetAsync();
+        //LoadAssetAsync();
+    }
+
+    private async Task InstantiateAssetAsync()
     {
         await assetRef.InstantiateAsync(Vector3.zero, Quaternion.identity).Task;
-        //LoadAssetAsync();
     }
 
     [ContextMenu("LoadAssetAsync")]

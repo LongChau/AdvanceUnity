@@ -46,7 +46,7 @@ MonoBehaviour:
       - m_Id: 519d2706cdaf89247af416b46972f321
         m_Value: ServerData/[BuildTarget]
       - m_Id: 3f01d825ddc352343864dcffd7342b02
-        m_Value: gs://addressable_storage/[BuildTarget]
+        m_Value: https://localhost/[BuildTarget]
     - m_InheritedParent: 
       m_Id: 22ce7b03632d07944a099aaa378349bb
       m_ProfileName: GoogleCloud
@@ -60,7 +60,7 @@ MonoBehaviour:
       - m_Id: 519d2706cdaf89247af416b46972f321
         m_Value: ServerData/[BuildTarget]
       - m_Id: 3f01d825ddc352343864dcffd7342b02
-        m_Value: gs://addressable_storage/[BuildTarget]
+        m_Value: https://storage.googleapis.com/addressable_storage/ServerData/[BuildTarget]
     m_ProfileEntryNames:
     - m_Id: 42909eea4aeadd04587f6aa91b662942
       m_Name: BuildTarget
