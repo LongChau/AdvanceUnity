@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2df959ceb3494fc0bdce0dd750bb7f8, type: 3}
+  m_Name: UserDataContainer_1
+  m_EditorClassIdentifier: 
+  listUserData:
+  - {fileID: 8770998515711446227}
+  - {fileID: 4529928767737018718}
+  - {fileID: 6782840209142202749}
+  user:
+    user_name: C
+    age: 1
+    level: 1
+  count: 3
+--- !u!114 &4529928767737018718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5e947cd9d2047c8a5a9aee996530b7, type: 3}
+  m_Name: UserData_1
+  m_EditorClassIdentifier: 
+  user_name: B
+  age: 1
+  level: 1
+--- !u!114 &6782840209142202749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5e947cd9d2047c8a5a9aee996530b7, type: 3}
+  m_Name: UserData_2
+  m_EditorClassIdentifier: 
+  user_name: C
+  age: 1
+  level: 1
+--- !u!114 &8770998515711446227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5e947cd9d2047c8a5a9aee996530b7, type: 3}
+  m_Name: UserData_0
+  m_EditorClassIdentifier: 
+  user_name: A
+  age: 1
+  level: 1
