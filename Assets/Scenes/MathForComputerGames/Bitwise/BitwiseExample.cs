@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-
-#if UNITY_EDITOR
 using UnityEngine;
-#endif
 
 namespace UnityAdvance.Bitwise
 {
@@ -42,30 +38,31 @@ namespace UnityAdvance.Bitwise
             attributes &= ~EAttributes.Charisma & ~EAttributes.Invisible;
         }
 
-        [ContextMenu("AddAttribute")]
+        [ContextMenu("Test_CheckAttributes")]
+        public void Test_CheckAttributes()
+        {
+            Debug.Log($"Has Invisible {HasAttribute(EAttributes.Invisible)}");
+            Debug.Log($"Has Fly {HasAttribute(EAttributes.Fly)}");
+            Debug.Log($"Has Charisma {HasAttribute(EAttributes.Charisma)}");
+            Debug.Log($"Has Intelligent {HasAttribute(EAttributes.Intelligent)}");
+            Debug.Log($"Has Magic {HasAttribute(EAttributes.Magic)}");
+        }
+
+        public bool HasAttribute(EAttributes att)
+        {
+            return (attributes & att) != 0;
+        }
+
+        //[ContextMenu("AddAttribute")]
         public void AddAttribute(EAttributes att)
         {
             attributes |= att;
         }
 
-        [ContextMenu("RemoveAttribute")]
+        //[ContextMenu("RemoveAttribute")]
         public void RemoveAttribute(EAttributes att)
         {
             attributes &= ~att;
         }
-
-#if UNITY_EDITOR
-        private void OnGUI(Rect position,
-                            SerializedProperty property,
-                            GUIContent label)
-        {
-            EditorGUI.BeginChangeCheck();
-            uint a = (uint)(EditorGUI.MaskField(position, label, property.intValue, property.enumNames));
-            if (EditorGUI.EndChangeCheck())
-            {
-                property.intValue = (int)a;
-            }
-        }
-#endif
     }
 }
