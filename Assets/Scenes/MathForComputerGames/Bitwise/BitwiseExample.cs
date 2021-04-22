@@ -10,12 +10,12 @@ namespace UnityAdvance.Bitwise
         [Flags]
         public enum EAttributes : int
         {
-            //None        = 1 << 0,
-            Invisible   = 1 << 1,
-            Fly         = 1 << 2,
-            Charisma    = 1 << 3,
-            Intelligent = 1 << 4,
-            Magic       = 1 << 5,
+            None        = 0,
+            Invisible   = 1 << 0,
+            Fly         = 1 << 1,
+            Charisma    = 1 << 2,
+            Intelligent = 1 << 3,
+            Magic       = 1 << 4,
         }
 
         public EAttributes attributes;
@@ -23,7 +23,7 @@ namespace UnityAdvance.Bitwise
         // Start is called before the first frame update
         void Start()
         {
-
+            
         }
 
         [ContextMenu("Test_AddAttributes")]
@@ -35,16 +35,25 @@ namespace UnityAdvance.Bitwise
         [ContextMenu("Test_RemoveAttributes")]
         public void Test_RemoveAttributes()
         {
-            attributes &= ~EAttributes.Charisma & ~EAttributes.Invisible;
+            //attributes &= ~EAttributes.Charisma & ~EAttributes.Invisible;
+            // Or:
+            attributes &= ~(EAttributes.Charisma | EAttributes.Invisible);
+        }
+
+        [ContextMenu("ResetAttributes")]
+        public void ResetAttributes()
+        {
+            Debug.Log(Convert.ToInt32(EAttributes.None));
+            attributes = EAttributes.None;
         }
 
         [ContextMenu("Test_CheckAttributes")]
         public void Test_CheckAttributes()
         {
-            Debug.Log($"Has Invisible {HasAttribute(EAttributes.Invisible)}");
-            Debug.Log($"Has Fly {HasAttribute(EAttributes.Fly)}");
-            Debug.Log($"Has Charisma {HasAttribute(EAttributes.Charisma)}");
-            Debug.Log($"Has Intelligent {HasAttribute(EAttributes.Intelligent)}");
+            Debug.Log($"Has Invisible {attributes.HasFlag(EAttributes.Invisible)}");
+            Debug.Log($"Has Fly {attributes.HasFlag(EAttributes.Fly)}");
+            Debug.Log($"Has Charisma {attributes.HasFlag(EAttributes.Charisma)}");
+            Debug.Log($"Has Intelligent {attributes.HasFlag(EAttributes.Intelligent)}");
             Debug.Log($"Has Magic {HasAttribute(EAttributes.Magic)}");
         }
 
