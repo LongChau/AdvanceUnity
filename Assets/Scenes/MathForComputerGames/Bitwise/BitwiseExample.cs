@@ -40,6 +40,12 @@ namespace UnityAdvance.Bitwise
             attributes &= ~(EAttributes.Charisma | EAttributes.Invisible);
         }
 
+        [ContextMenu("Test_ToggleAttributes")]
+        public void Test_ToggleAttributes()
+        {
+            attributes ^= EAttributes.Intelligent;
+        }
+
         [ContextMenu("ResetAttributes")]
         public void ResetAttributes()
         {

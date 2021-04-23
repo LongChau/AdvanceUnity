@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 1540061440}
   - component: {fileID: 1540061439}
   - component: {fileID: 1540061441}
+  - component: {fileID: 1540061442}
   m_Layer: 0
   m_Name: BitwiseExample
   m_TagString: Untagged
@@ -326,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5bc468f1284496eb2a00bd56a07b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attributes: 0
+  attributes: 8
 --- !u!4 &1540061440
 Transform:
   m_ObjectHideFlags: 0
@@ -351,5 +352,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8213a2274ab5a4ee29e5fa47b3394f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1540061442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540061438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b1904ba561145639fedb323cec1ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

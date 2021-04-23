@@ -17,6 +17,7 @@ namespace UnityAdvance.Bitwise
 
         }
 
+        [ContextMenu("CheckBitPacking")]
         private void CheckBitPacking()
         {
             int aBits = Convert.ToInt32(A, 2);
@@ -25,11 +26,15 @@ namespace UnityAdvance.Bitwise
 
             int packed = 0;
 
-            packed = packed | (aBits << 26);
-            packed = packed | (bBits << 21);
-            packed = packed | (cBits << 17);
-
             Debug.Log(Convert.ToString(packed, 2).PadLeft(32, '0'));
+            packed = packed | (aBits << 26);
+            Debug.Log(Convert.ToString(packed, 2).PadLeft(32, '0'));
+            packed = packed | (bBits << 21);
+            Debug.Log(Convert.ToString(packed, 2).PadLeft(32, '0'));
+            packed = packed | (cBits << 17);
+            Debug.Log(Convert.ToString(packed, 2).PadLeft(32, '0'));
+
+            Debug.Log($"Final {Convert.ToString(packed, 2).PadLeft(32, '0')}");
         }
     }
 }
