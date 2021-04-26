@@ -11,9 +11,13 @@ namespace UnityAdvance.Bitboard
     {
         public GameObject[] tilePrefabs;
         public GameObject housePrefab;
+        public GameObject treePrefab;
+
         public TextMeshProUGUI txtScore;
-        // Create dirt bitboard with 64-bit integer.
-        long dirtBitboard = 0;
+        GameObject[] tiles;
+        long dirtBitboard = 0; // Create dirt bitboard with 64-bit integer.
+        long treeBitboard = 0;
+        long playerBitboard = 0;
 
         [ContextMenu("Test_PadLeft")]
         void Test_PadLeft()
@@ -29,6 +33,7 @@ namespace UnityAdvance.Bitboard
         // Start is called before the first frame update
         void Start()
         {
+            tiles = new GameObject[64];
             // Consider the bitboard is the one-dimension array. 
             for (int r = 0; r < 8; r++)
             {
@@ -38,6 +43,7 @@ namespace UnityAdvance.Bitboard
                     Vector3 pos = new Vector3(c, 0, r);
                     var tile = Instantiate(tilePrefabs[randomTile], pos, Quaternion.identity);
                     tile.name = $"{tile.tag}_{c}_{r}";
+                    tiles[r * 8 + c] = tile;
                     // Check for dirt.
                     if (tile.CompareTag("Dirt"))
                     {
@@ -48,6 +54,7 @@ namespace UnityAdvance.Bitboard
                 }
             }
             Debug.Log($"Dirt cells = {CellCount(dirtBitboard)}");
+            InvokeRepeating("PlantTree", 1, 1);
         }
 
         void PrintBitboard(string name, long bitBoard)
@@ -79,6 +86,62 @@ namespace UnityAdvance.Bitboard
             // We shift it. 
             long newBit = 1L << cell_position;
             return bitboard |= newBit;
+        }
+
+        bool GetCellState(long bitboard, int row, int col)
+        {
+            // This is cell position in one-dimension board array. 
+            var cell_position = row * 8 + col;
+            // We shift it. 
+            long mask = 1L << cell_position;
+            return (bitboard & mask) != 0;
+        }
+
+        void PlantTree()
+        {
+            int rand_row = UnityEngine.Random.Range(0, 8);
+            int rand_col = UnityEngine.Random.Range(0, 8);
+            // To know that the cell is valid for place tree we 'mask' dirtBB with the playerBB.
+            long validBB = dirtBitboard & ~playerBitboard;
+            if (GetCellState(validBB, rand_row, rand_col))
+            {
+                var tree = Instantiate(treePrefab);
+                tree.transform.parent = tiles[rand_row * 8 + rand_col].transform;
+                tree.transform.localPosition = Vector3.zero;
+                treeBitboard = SetCellState(treeBitboard, rand_row, rand_col);
+            }
+        }
+
+        private void Update()
+        {
+            // Place house.
+            PlaceHouse();
+        }
+
+        private void PlaceHouse()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                bool isHitSomething = Physics.Raycast(ray, out hit);
+                if (isHitSomething && hit.collider != null)
+                {
+                    var hitObj = hit.collider.gameObject;
+                    var row = (int)hitObj.transform.position.z;
+                    var column = (int)hitObj.transform.position.x;
+                    // Check if the cell is valid to place the house.
+                    // It must be a dirt without tree.
+                    long validBB = dirtBitboard & ~treeBitboard;
+                    if (GetCellState(validBB, row, column))
+                    {
+                        var house = Instantiate(housePrefab);
+                        house.transform.parent = hit.collider.gameObject.transform;
+                        house.transform.localPosition = Vector3.zero;
+                        playerBitboard = SetCellState(playerBitboard, row, column);
+                    }
+                }
+            }
         }
     }
 }

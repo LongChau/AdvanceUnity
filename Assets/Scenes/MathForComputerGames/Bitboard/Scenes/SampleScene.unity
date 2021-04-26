@@ -388,8 +388,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.0871723, y: 0.89959055, z: -0.21045254, w: -0.37262255}
-  m_LocalPosition: {x: 2.0724714, y: 1.4507298, z: 2.0724716}
+  m_LocalRotation: {x: -0.31011015, y: 0.003421531, z: -0.0011158185, w: -0.9506939}
+  m_LocalPosition: {x: 3.6309159, y: 5.394123, z: -3.4580579}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -654,7 +654,9 @@ MonoBehaviour:
   - {fileID: 3450895657664714647, guid: 1fa03a072776e49589f78f26078e6ac7, type: 3}
   - {fileID: 9103724736054679900, guid: 408489c40c2094cdf91c3358ffb7f876, type: 3}
   - {fileID: 7640780226382824646, guid: 41617882fd3544dbe8471c917df8475a, type: 3}
-  housePrefab: {fileID: 3577201369186796273, guid: 844b0cf043949446d9329d463b8f70fd,
+  housePrefab: {fileID: 5958316442239806738, guid: 33dd7643a2e11463cbf445ab0bc38f2a,
+    type: 3}
+  treePrefab: {fileID: 919132149155446097, guid: 9189f22d3ffcb465e98c2ecc1326aea2,
     type: 3}
   txtScore: {fileID: 900468141}
 --- !u!4 &1434980797
