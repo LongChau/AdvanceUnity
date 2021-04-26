@@ -9,6 +9,9 @@ namespace UnityAdvance.Bitboard
 {
     public class BoardCreator : MonoBehaviour
     {
+        const int POINT_DIRT = 10;
+        const int POINT_DESERT = 2;
+
         public GameObject[] tilePrefabs;
         public GameObject housePrefab;
         public GameObject treePrefab;
@@ -16,8 +19,11 @@ namespace UnityAdvance.Bitboard
         public TextMeshProUGUI txtScore;
         GameObject[] tiles;
         long dirtBitboard = 0; // Create dirt bitboard with 64-bit integer.
+        long desertBitboard = 0;
         long treeBitboard = 0;
         long playerBitboard = 0;
+
+        int score = 0;
 
         [ContextMenu("Test_PadLeft")]
         void Test_PadLeft()
@@ -51,8 +57,17 @@ namespace UnityAdvance.Bitboard
                         dirtBitboard = SetCellState(dirtBitboard, r, c);
                         PrintBitboard("Dirt", dirtBitboard);
                     }
+                    else if (tile.CompareTag("Desert"))
+                    {
+                        desertBitboard = SetCellState(desertBitboard, r, c);
+                        PrintBitboard("Desert", desertBitboard);
+                    }
                 }
             }
+
+            var desert_dirt = dirtBitboard | desertBitboard;
+            PrintBitboard("Desert_Dirt", desert_dirt);
+
             Debug.Log($"Dirt cells = {CellCount(dirtBitboard)}");
             InvokeRepeating("PlantTree", 1, 1);
         }
@@ -77,6 +92,12 @@ namespace UnityAdvance.Bitboard
                 count++;
             }
             return count;
+        }
+
+        void CalculateScore(long bitboard)
+        {
+            score = CellCount(bitboard & dirtBitboard) * POINT_DIRT + CellCount(bitboard & desertBitboard) * POINT_DESERT;
+            txtScore.SetText($"Score: {score}");
         }
 
         long SetCellState(long bitboard, int row, int col)
@@ -132,13 +153,14 @@ namespace UnityAdvance.Bitboard
                     var column = (int)hitObj.transform.position.x;
                     // Check if the cell is valid to place the house.
                     // It must be a dirt without tree.
-                    long validBB = dirtBitboard & ~treeBitboard;
+                    long validBB = (dirtBitboard | desertBitboard) & ~treeBitboard;
                     if (GetCellState(validBB, row, column))
                     {
                         var house = Instantiate(housePrefab);
                         house.transform.parent = hit.collider.gameObject.transform;
                         house.transform.localPosition = Vector3.zero;
                         playerBitboard = SetCellState(playerBitboard, row, column);
+                        CalculateScore(playerBitboard);
                     }
                 }
             }
