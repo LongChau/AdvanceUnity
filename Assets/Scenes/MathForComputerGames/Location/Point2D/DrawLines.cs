@@ -6,6 +6,10 @@ namespace UnityAdvance.Location
 {
     public class DrawLines : MonoBehaviour
     {
+        public int size;
+        public int xmax = 200;
+        public int ymax = 200;
+
         Coords point = new Coords(10, 20);
 
         Coords startPointYAxis = new Coords(0, 100);
@@ -37,6 +41,18 @@ namespace UnityAdvance.Location
             Coords.DrawLine(startPointYAxis, endPointYAxis, 1, Color.green);
             Coords.DrawLine(startPointXAxis, endPointXAxis, 1, Color.red);
             Coords.DrawLine(points, 1, Color.white);
+
+            int xOffset = (int)(xmax / (float)size);
+            int yOffset = (int)(ymax / (float)size);
+
+            for (int x = -xOffset * size; x < xOffset * size; x += size)
+            {
+                Coords.DrawLine(new Coords(x, -ymax), new Coords(x, ymax), 0.5f, Color.white);
+            }
+            for (int y = -yOffset * size; y < yOffset * size; y += size)
+            {
+                Coords.DrawLine(new Coords(-xmax, y), new Coords(xmax, y), 0.5f, Color.white);
+            }
         }
 
         // Update is called once per frame
