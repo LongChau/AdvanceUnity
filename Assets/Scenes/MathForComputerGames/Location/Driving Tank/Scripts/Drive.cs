@@ -56,5 +56,20 @@ namespace UnityAdvance.Location
             Debug.Log($"Distance: {Vector2.Distance(a, b)}");
             Debug.Log($"Distance: {Vector2.Distance(c, d)}");
         }
+
+        [ContextMenu("CalculateVector")]
+        private void CalculateVector()
+        {
+            Vector2 a = new Vector2(3f, 5f);
+            Debug.Log($"Distance: {a.magnitude}");
+            Vector2 b = new Vector2(0, 1f);
+            Debug.Log($"Distance: {b.magnitude}");
+            b = new Vector2(-5, 11f);
+            Debug.Log($"Distance: {b.magnitude}");
+            b = new Vector2(-7, 10f);
+            Debug.Log($"Distance: {b.magnitude}");
+            b = new Vector2(6, -15);
+            Debug.Log($"Distance: {b.magnitude}");
+        }
     }
 }
