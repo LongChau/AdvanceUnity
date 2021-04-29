@@ -25,6 +25,13 @@ namespace UnityAdvance.SectionVector
         void Start()
         {
             direction = feul.position - transform.position;
+
+            // Use this if you want manually do the normalize.
+            Coords dirNormal = HolisticMath.GetNormal(new Coords(direction.x, direction.y));
+            direction = dirNormal.ToVector2;
+
+            float angle = HolisticMath.Angle(new Coords(0, 1, 0), new Coords(direction)) * 180f/Mathf.PI;
+            Debug.Log($"Angle to fuel: {angle}");
         }
 
         // Update is called once per frame
@@ -45,12 +52,19 @@ namespace UnityAdvance.SectionVector
 
             // If we want to move at constant speed. We have to re-calculate.
             // Let's have a stopping distance.
-            if (Vector2.Distance(transform.position, feul.position) > stoppingDistance)
-                this.transform.position += direction * speed;
+            //if (Vector2.Distance(transform.position, feul.position) > stoppingDistance)
+            //    this.transform.position += direction * speed;
             // The code above make the tank in same speed.
             // But problem is 2 tanks can move to the position at the same time.
 
+            // We need to normalize the vector. Get rid of the direction length. 
+            //if (Vector2.Distance(transform.position, feul.position) > stoppingDistance)
+            //    this.transform.position += direction.normalized * speed;
 
+            // For manual normalize:
+            var distance = HolisticMath.Distance(new Coords(transform.position), new Coords(feul.position));
+            if (distance > stoppingDistance)
+                this.transform.position += direction * speed * Time.deltaTime;
         }
 
         private void MoveWithSpeed()

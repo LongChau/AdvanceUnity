@@ -24,6 +24,20 @@ namespace UnityAdvance.Location
             this.z = z;
         }
 
+        public Coords(Vector3 vector)
+        {
+            this.x = vector.x;
+            this.y = vector.y;
+            this.z = vector.z;
+        }
+
+        public Vector3 ToVector3 => new Vector3(x, y, z);
+        public Vector2 ToVector2 => new Vector2(x, y);
+
+        public float X { get => x; set => x = value; }
+        public float Y { get => y; set => y = value; }
+        public float Z { get => z; set => z = value; }
+
         public override string ToString()
         {
             return $"({x},{y},{z})";

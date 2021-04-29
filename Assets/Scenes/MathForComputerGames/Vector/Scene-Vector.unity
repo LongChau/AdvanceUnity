@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145b225f8de974f94b68a06c4015f354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  speed: 1.5
   snap_speed: 0.92
   feul: {fileID: 1879459228}
   frameCount: 0
@@ -2294,7 +2294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4938723037837348, guid: 003f94f93ca81d44abeb0a691d2b9629, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4938723037837348, guid: 003f94f93ca81d44abeb0a691d2b9629, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2679,7 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145b225f8de974f94b68a06c4015f354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  speed: 1.5
   snap_speed: 0.92
   feul: {fileID: 1879459228}
   frameCount: 0

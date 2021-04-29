@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Scenes;
 using UnityEngine;
-using Unity.Scenes;
 
 namespace TestPerformance
 {
