@@ -30,15 +30,48 @@ namespace UnityAdvance.SectionVector
             Coords dirNormal = HolisticMath.GetNormal(new Coords(direction.x, direction.y));
             direction = dirNormal.ToVector2;
 
-            float angle = HolisticMath.Angle(new Coords(0, 1, 0), new Coords(direction)) * 180f/Mathf.PI;
+            // Find the angle between the direction and the world up vector.
+            //float angle = HolisticMath.Angle(new Coords(this.transform.up), new Coords(direction)) * 180f/Mathf.PI;
+            float angle = HolisticMath.Angle(new Coords(this.transform.up), new Coords(direction)); // Radians.
             Debug.Log($"Angle to fuel: {angle}");
+
+            // Find the target direction vector.
+            // But this is wrong rotation somehow...
+            //Coords newDir = HolisticMath.Rotate(new Coords(0, 1, 0), angle);
+            //this.transform.up = newDir.ToVector3;
+            // Because the rotation is not correct.
+            //
+
+            // Use the cross product.
+            //ManualLookAt(dirNormal, angle);
+
+            // LookAt replacement.
+            this.transform.up = HolisticMath.LookAt2D(new Coords(transform.up), new Coords(transform.position), new Coords(feul.transform.position)).ToVector2;
+        }
+
+        private void ManualRotation(Coords dirNormal, float angle)
+        {
+            bool isClockwise = false;
+            isClockwise = HolisticMath.Cross(new Coords(this.transform.up), dirNormal).Z < 0;
+            Coords newDir = HolisticMath.Rotate(new Coords(this.transform.up), angle, isClockwise);
+            Debug.Log($"Change to direction: {newDir.ToVector2}");
+            this.transform.up = new Vector3(newDir.X, newDir.Y, newDir.Z);
+        }
+
+        [ContextMenu("TestRotate()")]
+        private void TestRotate()
+        {
+            float angle = 20f * Mathf.PI / 180;
+            Coords newDir = HolisticMath.Rotate(new Coords(this.transform.up), angle, true);
+            Debug.Log($"Change to direction: {newDir.ToVector2}");
+            this.transform.up = new Vector3(newDir.X, newDir.Y, newDir.Z);
         }
 
         // Update is called once per frame
         void Update()
         {
-            AutoMoveToFuel();
-            //MoveWithSpeed();
+            //AutoMoveToFuel();
+            MoveWithSpeed();
             //SnappingEffect();
             //RandomSnappingEffect();
         }

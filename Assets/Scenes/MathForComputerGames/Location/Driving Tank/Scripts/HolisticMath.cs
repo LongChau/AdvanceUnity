@@ -42,5 +42,47 @@ namespace UnityAdvance.SectionVector
             var distance = Distance(new Coords(0, 0, 0), vector1) * Distance(new Coords(0, 0, 0), vector2);
             return Mathf.Acos(dot / distance); // Radians. For degrees * 180/mathf.PI;
         }
+
+        /// <summary>
+        /// Find the rotate vector.
+        /// </summary>
+        /// <param name="vector">Starting vector</param>
+        /// <param name="angle">Angle in radians</param>
+        /// <returns></returns>
+        static public Coords Rotate(Coords vector, float angle, bool clockwise) // in radians
+        {
+            if (clockwise)
+            {
+                // A trick to make it rotate anti-clockwise.
+                angle = 2 * Mathf.PI - angle;
+            }
+
+            float xVal = vector.X * Mathf.Cos(angle) - vector.Y * Mathf.Sin(angle);
+            float yVal = vector.X * Mathf.Sin(angle) + vector.Y * Mathf.Cos(angle);
+            return new Coords(xVal, yVal, 0);
+        }
+
+        /// <summary>
+        /// Find Cross product.
+        /// </summary>
+        /// <returns></returns>
+        static public Coords Cross(Coords vec1, Coords vec2)
+        {
+            var x = vec1.Y * vec2.Z - vec1.Z * vec2.Y;
+            var y = vec1.Z * vec2.X - vec1.X * vec2.Z;
+            var z = vec1.X * vec2.Y - vec1.Y * vec2.X;
+            return new Coords(x, y, z);
+        }
+
+        static public Coords LookAt2D(Coords forwardVector, Coords position, Coords focusPoint)
+        {
+            Coords direction = new Coords(focusPoint.X - position.X, focusPoint.Y - position.Y, position.Z);
+            float angle = HolisticMath.Angle(forwardVector, direction);
+            bool clockwise = false;
+            if (Cross(forwardVector, direction).Z < 0)
+                clockwise = true;
+            Coords newDir = Rotate(forwardVector, angle, clockwise);
+            return newDir;
+        }
     }
 }
