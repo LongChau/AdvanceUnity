@@ -29,6 +29,7 @@ public class SampleWebView : MonoBehaviour
 {
     public string Url;
     public Text status;
+    public Texture testTexture;
     WebViewObject webViewObject;
 
     IEnumerator Start()
@@ -40,6 +41,15 @@ public class SampleWebView : MonoBehaviour
                 Debug.Log(string.Format("CallFromJS[{0}]", msg));
                 status.text = msg;
                 status.GetComponent<Animation>().Play();
+
+                if (msg == "HelloFromJS")
+                {
+                    Debug.Log("Unity received");
+                }
+                else if (msg == "form?msg=hoge")
+                {
+                    Debug.Log("Unity received");
+                }
             },
             err: (msg) =>
             {
@@ -226,5 +236,29 @@ public class SampleWebView : MonoBehaviour
             webViewObject.ClearCookies();
         }
         x += 90;
+
+        if (GUI.Button(new Rect(x, 50, 300, 80), "Call Unity function from JS."))
+        {
+            Debug.Log("Call Unity function from JS.");
+            webViewObject.EvaluateJS(@"Unity.call('HelloFromJS')");
+        }
+        x += 300;
+
+        if (GUI.Button(new Rect(x, 50, 100, 80), "hideImage"))
+        {
+            Debug.Log("hideImage");
+            webViewObject.EvaluateJS(@"hideImage()");
+            //webViewObject.EvaluateJS(@"Unity.call('ua=' + navigator.userAgent)");
+        }
+        x += 110;
+
+        if (GUI.Button(new Rect(x, 50, 100, 80), testTexture))
+        {
+            Debug.Log("testImage");
+        }
+        x += 110;
+
+        GUI.DrawTexture(new Rect(x, 200, testTexture.width, testTexture.height), testTexture, ScaleMode.ScaleToFit, true, 0.0F);
+        x += 110;
     }
 }

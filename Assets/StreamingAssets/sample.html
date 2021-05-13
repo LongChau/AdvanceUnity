@@ -25,7 +25,7 @@
     -->
     <p><a href="https://google.com">https://google.com</a> (for testing go/back buttons)</p>
     <p><a href="http://httpbin.org/headers">http://httpbin.org/headers</a> (for testing custom headers.)</p>
-    <p><img src="sample.jpg"/> (local image)</p>
+    <p id="img"><img src="sample.jpg"/> (local image)</p>
     <hr/>
     <div id="msg">[]</div>
     <p><a href="javascript:void(0)" onclick="Unity.call('anchor');">[Send Message!]</a></p>
@@ -34,5 +34,6 @@
       <input type="submit" value="Send Message!" onclick="Unity.call('form?msg=' + document.getElementById('input1').value); return false;"/><br/>
       <input type="file" name="datafile"/>
     </form>
+    <button id="btn">Hide Image</button>
   </body>
 </html>
