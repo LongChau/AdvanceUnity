@@ -147,6 +147,7 @@ public class SampleWebView : MonoBehaviour
         webViewObject.SetVisibility(true);
 
 #if !UNITY_WEBPLAYER && !UNITY_WEBGL
+        //@LONG For showing sample.html
         if (Url.StartsWith("http")) {
             webViewObject.LoadURL(Url.Replace(" ", "%20"));
         } else {
@@ -258,7 +259,7 @@ public class SampleWebView : MonoBehaviour
         }
         x += 110;
 
-        GUI.DrawTexture(new Rect(x, 200, testTexture.width, testTexture.height), testTexture, ScaleMode.ScaleToFit, true, 0.0F);
-        x += 110;
+        //GUI.DrawTexture(new Rect(x, 200, testTexture.width, testTexture.height), testTexture, ScaleMode.ScaleToFit, true, 0.0F);
+        //x += 110;
     }
 }

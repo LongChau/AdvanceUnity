@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Test_Addressable/Addressable.unity
     guid: e1ef22c11b52bd943bd16d3220fbd481
   - enabled: 1
-    path: Assets/Scenes/Webview/Sample.unity
+    path: Assets/Scenes/Webview/Scenes/Sample.unity
     guid: 13305894bc19a4c0b9628a8b5b587b99
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 5e6e7052fda95f0478ccede2bee2d613,

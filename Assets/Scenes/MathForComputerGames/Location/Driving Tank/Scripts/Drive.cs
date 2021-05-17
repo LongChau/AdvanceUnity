@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityAdvance.SectionVector;
 
 // A very simplistic car driving on the x-z plane.
 namespace UnityAdvance.Location
@@ -21,13 +22,13 @@ namespace UnityAdvance.Location
 
         void Update()
         {
-            if (Fuel > 0)
-            {
-                var newFuel = Fuel - (int)Vector2.Distance(TankPosition, transform.position);
-                uiManager._txtEnergyPos.SetText(newFuel.ToString());
-            }
+            //if (Fuel > 0)
+            //{
+            //    var newFuel = Fuel - (int)Vector2.Distance(TankPosition, transform.position);
+            //    uiManager._txtEnergyPos.SetText(newFuel.ToString());
+            //}
 
-            TankPosition = transform.position;
+            //TankPosition = transform.position;
 
             // Get the horizontal and vertical axis.
             // By default they are mapped to the arrow keys.
@@ -40,10 +41,14 @@ namespace UnityAdvance.Location
             rotation *= Time.deltaTime;
 
             // Move translation along the object's z-axis
-            transform.Translate(0, translation, 0);
+            //transform.Translate(0, translation, 0);
+            transform.position = HolisticMath.Translate(new Coords(transform.position),
+                                                        new Coords(transform.up),
+                                                        new Coords(0, translation, 0)).ToVector2;
 
             // Rotate around our y-axis
-            transform.Rotate(0, 0, -rotation);
+            //transform.Rotate(0, 0, -rotation);
+            transform.up = HolisticMath.Rotate(new Coords(transform.up), rotation * Mathf.Deg2Rad, true).ToVector2;
         }
 
         [ContextMenu("CalculateDistance")]

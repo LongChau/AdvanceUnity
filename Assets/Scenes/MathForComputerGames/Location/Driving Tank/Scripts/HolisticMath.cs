@@ -84,5 +84,23 @@ namespace UnityAdvance.SectionVector
             Coords newDir = Rotate(forwardVector, angle, clockwise);
             return newDir;
         }
+
+        /// <summary>
+        /// Add vector to existing vector
+        /// </summary>
+        /// <returns></returns>
+        static public Coords Translate(Coords position, Coords facing, Coords vector)
+        {
+            if (Distance(new Coords(0, 0, 0), vector) <= 0) return position;
+            float angle = Angle(vector, facing);
+            float worldAngle = Angle(vector, new Coords(0, 1, 0));
+            bool isClockwise = Cross(vector, facing).Z < 0;
+            vector = Rotate(vector, angle + worldAngle, isClockwise);
+
+            float xVal = position.X + vector.X;
+            float yVal = position.Y + vector.Y;
+            float zVal = position.Z + vector.Z;
+            return new Coords(xVal, yVal, zVal);
+        }
     }
 }
