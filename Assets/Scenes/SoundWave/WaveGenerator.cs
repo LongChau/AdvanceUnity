@@ -18,6 +18,8 @@ namespace LC.Ultility
 
         public float pointDistance = 0.1f;
         public float pointHeightDistance = 34f;
+        public float bandSize = 1.1f;
+        public float heightOffset;
 
         public void Start()
         {
@@ -38,11 +40,22 @@ namespace LC.Ultility
             _bottomLine.gameObject.SetActive(false);
         }
 
+        [ContextMenu("Play")]
+        public void Play()
+        {
+            _audioSource.Play();
+        }
+
+        [ContextMenu("Pause")]
+        public void Pause()
+        {
+            _audioSource.Pause();
+        }
+
         public void Update()
         {
             _audioSource.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
 
-            var bandSize = 1.1f;
             var crossover = bandSize;
             var viewSpectrum = new List<float>();
             var b = 0f;
@@ -66,7 +79,13 @@ namespace LC.Ultility
         {
             var width = pointDistance * viewSpectrum.Count;
             lineRenderer.positionCount = viewSpectrum.Count;
-            lineRenderer.SetPositions(viewSpectrum.Select((x, i) => transform.position + new Vector3(-width / 2 + i * pointDistance, x * pointHeightDistance * modifier)).ToArray());
+            // Such as for loop
+            //lineRenderer.SetPositions(viewSpectrum.Select((x, index) => transform.position + new Vector3(-width / 2 + index * pointDistance, x * pointHeightDistance * modifier)).ToArray());
+            lineRenderer.SetPositions(viewSpectrum.Select((x, index) => transform.position + new Vector3(-width / 2 + index * pointDistance, x * pointHeightDistance * modifier)).ToArray());
+            //for (int index = 0; index < lineRenderer.positionCount; index++)
+            //{
+            //    lineRenderer.SetPosition(index, new Vector3(lineRenderer.GetPosition(index).x, lineRenderer.GetPosition(index).y - heightOffset, lineRenderer.GetPosition(index).z));
+            //}
         }
     }
 }
