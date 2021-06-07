@@ -159,7 +159,7 @@ namespace Pathfinding
 
         public float CalculateManhattanDistance(NodeController node_1, NodeController node_2)
         {
-            return Math.Abs(node_1.X - node_2.X) + Math.Abs(node_2.X - node_2.Y);
+            return Math.Abs(node_1.X - node_2.X) + Math.Abs(node_1.Y - node_2.Y);
         }
     }
 }

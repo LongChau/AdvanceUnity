@@ -53,12 +53,12 @@ namespace Pathfinding
             }
         }
 
-        public NodeController GetNodeCtrl(int column, int row)
+        public NodeController GetNodeCtrl(int row, int column)
         {
             bool isValidColumn = (0 <= column && column < _totalColumn);
             bool isValidRow = (0 <= row && row < _totalRow);
             if (!isValidColumn || !isValidRow) return null;
-            return Nodes[column, row];
+            return Nodes[row, column];
         }
     }
 }
