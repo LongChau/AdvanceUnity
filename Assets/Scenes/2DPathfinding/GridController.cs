@@ -27,6 +27,12 @@ namespace Pathfinding
 
         public NodeController[,] Nodes = new NodeController[0, 0];
 
+        // Testing
+        //[Header("Test data:")]
+        //[SerializeField]
+        //private List<Vector2> _blockNodes = new List<Vector2>();
+        //
+
         // Start is called before the first frame update
         void Start()
         {
@@ -38,6 +44,22 @@ namespace Pathfinding
             _listNodes = new List<NodeController>();
             Nodes = new NodeController[_totalRow, _totalColumn];
             // Create grid map.
+            CreateGrid();
+            //ApplyBlockNodes();
+        }
+
+        //[ContextMenu("ApplyBlockNodes")]
+        //private void ApplyBlockNodes()
+        //{
+        //    // Apply block nodes.
+        //    foreach (var pos in _blockNodes)
+        //    {
+        //        Nodes[(int)pos.x, (int)pos.y].NodeType = ENodeType.Hill;
+        //    }
+        //}
+
+        private void CreateGrid()
+        {
             for (int columnIndex = 0; columnIndex < _totalRow; columnIndex++)
             {
                 for (int rowIndex = 0; rowIndex < _totalColumn; rowIndex++)

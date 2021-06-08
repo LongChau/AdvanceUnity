@@ -71,6 +71,10 @@ namespace Pathfinding
             {
                 SearchForPath(from, to);
             }
+            // End finding path.
+            Debug.Log("End finding path.");
+            if (!_isFoundPath)
+                Debug.Log("There is no valid path");
         }
 
         public void SearchForPath(NodeController from, NodeController to)
@@ -103,6 +107,7 @@ namespace Pathfinding
 
                 // Not a valid node.
                 if (newNode == null) continue;  // This direction is invalid. Please check another direction.
+                if (newNode.NodeType != ENodeType.Dirtroad) continue; // Check for block nodes. 
 
                 newNode.NodeData.HCost = CalculateManhattanDistance(newNode, to);
                 newNode.NodeData.GCost = CalculateManhattanDistance(newNode, _currentNode);

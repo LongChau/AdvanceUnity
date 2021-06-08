@@ -9,6 +9,8 @@ namespace Pathfinding
     {
         [SerializeField]
         private Node _node;
+        [SerializeField]
+        private ENodeType _nodeType;
 
         [SerializeField]
         private Sprite _normalSprite;
@@ -33,6 +35,8 @@ namespace Pathfinding
 
         public float X => transform.position.x;
         public float Y => transform.position.y;
+
+        public ENodeType NodeType { get => _nodeType; set => _nodeType = value; }
 
         // Start is called before the first frame update
         void Start()
@@ -61,5 +65,12 @@ namespace Pathfinding
         {
             _render.sprite = _pathSprite;
         }
+    }
+
+    public enum ENodeType
+    {
+        Dirtroad, 
+        Hill,
+        River,
     }
 }

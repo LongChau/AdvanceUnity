@@ -157,7 +157,7 @@ MonoBehaviour:
   _isFoundPath: 0
   _currentNode: {fileID: 0}
   _listResult: []
-  _directions: 8
+  _directions: 4
   _from: {fileID: 0}
   _to: {fileID: 0}
 --- !u!4 &1471368222
