@@ -46,6 +46,12 @@ namespace UnityAdvance
         private Compass _compass;
 
         private Vector3 _localPositionToCompass;
+
+        // Time when the movement started.
+        private float startTime;
+        // Total distance between the markers.
+        private float journeyLength;
+
         public Vector3 FakeTarget
         {
             get
@@ -71,6 +77,9 @@ namespace UnityAdvance
             _isLastPointReached = false;
 
             RepositionCompass();
+
+            startTime = Time.time;
+            journeyLength = Vector3.Distance(_startPoint, _endPoint);
         }
 
         private void Reset()
@@ -178,6 +187,9 @@ namespace UnityAdvance
                     {
                         _startPoint = _endPoint;
                         _endPoint = newEnd;
+
+                        startTime = Time.time;
+                        journeyLength = Vector3.Distance(_startPoint, _endPoint);
                     }
 
                     RepositionCompass();
@@ -191,6 +203,9 @@ namespace UnityAdvance
             curPointIndex = 0;
             _endPoint = _movementPath[curPointIndex];
             _isLastPointReached = false;
+
+            startTime = Time.time;
+            journeyLength = Vector3.Distance(_startPoint, _endPoint);
         }
 
         private void SetPingPong()
@@ -207,7 +222,8 @@ namespace UnityAdvance
                     MoveWith_MoveTowards();
                     break;
                 case EMovementMethod.Lerp:
-                    MoveWith_Lerp();
+                    //MoveWith_Lerp();
+                    MoveWith_Lerp_SameSpeed();
                     break;
                 case EMovementMethod.Damp:
                     MoveWith_Damp();
@@ -226,6 +242,15 @@ namespace UnityAdvance
         private void MoveWith_Lerp()
         {
             transform.position = Vector3.Lerp(transform.position, _endPoint, 1 * Time.deltaTime);
+        }
+
+        private void MoveWith_Lerp_SameSpeed()
+        {
+            // Distance moved equals elapsed time times speed..
+            float distCovered = (Time.time - startTime) * _movementSpeed;
+            // Fraction of journey completed equals current distance divided by total distance.
+            float fractionOfJourney = distCovered / journeyLength;
+            transform.position = Vector3.Lerp(_startPoint, _endPoint, fractionOfJourney);
         }
 
         private Vector3 _velocity;
