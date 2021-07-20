@@ -1,0 +1,5 @@
+- Play the game. Wait for creating grid done.
+- Drag and drop one node to the 'from node' in inspector of Pathfinding.
+- Drag and drop one node to the 'to node' in inspector of Pathfinding.
+- Right click pathfinding to open the context menu => FindPath. 
+- Path will appear. 
