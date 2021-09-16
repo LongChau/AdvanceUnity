@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TestUniRx
+namespace Test_ServiceLocator
 {
     public struct ThemeAudio : IAudio
     {

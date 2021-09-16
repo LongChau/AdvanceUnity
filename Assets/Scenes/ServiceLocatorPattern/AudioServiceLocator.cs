@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TestUniRx
+namespace Test_ServiceLocator
 {
     /// <summary>
     /// THe locator that ties audios together.
