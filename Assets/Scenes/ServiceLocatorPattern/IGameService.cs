@@ -6,6 +6,6 @@ namespace Test_ServiceLocator
 {
     public interface IGameService
     {
-
+        void Login();
     }
 }

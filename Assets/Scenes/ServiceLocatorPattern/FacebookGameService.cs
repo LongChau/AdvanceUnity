@@ -6,6 +6,9 @@ namespace Test_ServiceLocator
 {
     public class FacebookGameService : IGameService
     {
-
+        public void Login()
+        {
+            Debug.Log("Facebook login");
+        }
     }
 }

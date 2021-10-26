@@ -12,6 +12,13 @@ namespace Test_ServiceLocator
             GameServiceLocator.Instance.Get<IOSGameService>();
             GameServiceLocator.Instance.Get<AndroidGameService>();
             GameServiceLocator.Instance.Get<FacebookGameService>();
+
+            // #if IOS
+            GameServiceLocator.Instance.Get<IOSGameService>().Login();
+            // #if Android
+            GameServiceLocator.Instance.Get<AndroidGameService>().Login();
+            // #if Facebook
+            GameServiceLocator.Instance.Get<FacebookGameService>().Login();
         }
     }
 }

@@ -6,6 +6,9 @@ namespace Test_ServiceLocator
 {
     public class IOSGameService : IGameService
     {
-
+        public void Login()
+        {
+            Debug.Log("IOS login");
+        }
     }
 }

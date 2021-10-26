@@ -6,6 +6,9 @@ namespace Test_ServiceLocator
 {
     public class AndroidGameService : IGameService
     {
-
+        public void Login()
+        {
+            Debug.Log("Android login");
+        }
     }
 }

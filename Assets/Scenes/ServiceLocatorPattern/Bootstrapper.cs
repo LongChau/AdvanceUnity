@@ -10,7 +10,7 @@ namespace Test_ServiceLocator
     /// </summary>
     public static class Bootstrapper
     {
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static void Initialized()
         {
             // Init default service locator.
