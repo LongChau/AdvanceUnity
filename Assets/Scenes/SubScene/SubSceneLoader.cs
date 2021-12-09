@@ -18,15 +18,15 @@ namespace TestPerformance
 
         protected override void OnUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                LoadSubScene(SubSceneReferences.Instance.map1);
-            }
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+            //    LoadSubScene(SubSceneReferences.Instance.map1);
+            //}
 
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                UnloadSubScene(SubSceneReferences.Instance.map1);
-            }
+            //if (Input.GetKeyDown(KeyCode.M))
+            //{
+            //    UnloadSubScene(SubSceneReferences.Instance.map1);
+            //}
         }
 
         private void LoadSubScene(SubScene scene)
