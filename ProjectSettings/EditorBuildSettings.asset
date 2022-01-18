@@ -18,11 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Test_Addressable/Addressable.unity
     guid: e1ef22c11b52bd943bd16d3220fbd481
   - enabled: 0
-    path: Assets/Scenes/Webview/Scenes/Sample.unity
+    path: 
     guid: 13305894bc19a4c0b9628a8b5b587b99
   - enabled: 1
     path: Assets/Scenes/TextMeshPro/TMPro.unity
     guid: 52e9be8bacc8675489b504db91a7fe4a
+  - enabled: 1
+    path: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/SceneTests/TestSceneContextEvents/TestSceneContextEvents.unity
+    guid: 6a6e139b8a4d4d544a3318c53b9ae3d6
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 5e6e7052fda95f0478ccede2bee2d613,
       type: 2}
