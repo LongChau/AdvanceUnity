@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -82,6 +83,10 @@ namespace UnityAdvance
             {
                 UpdateRotationLeft();
             }
+            else if (Input.GetKey(KeyCode.Space))
+            {
+                FlyUp();
+            }
             else
             {
                 //_heliModel.rotation = Quaternion.Lerp(_heliModel.rotation, new Quaternion(0f, 0f, 0f, 0f), 2f * Time.fixedDeltaTime);
@@ -89,6 +94,11 @@ namespace UnityAdvance
             }
 
             UpdateLeftRightMovement();
+        }
+
+        private void FlyUp()
+        {
+            transform.Translate(Vector3.up * _movementSpeed * Time.deltaTime, Space.Self);
         }
 
         private void UpdateVerticalMovement()
